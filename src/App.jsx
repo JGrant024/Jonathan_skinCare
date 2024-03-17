@@ -6,7 +6,7 @@ import Products from "./routes/Products";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Welcome To Essential'D Skin Care</div>,
+    element: <div>Welcome to Essentiald Skin </div>,
   },
   {
     path: "/products",
@@ -15,7 +15,11 @@ const router = createBrowserRouter([
 ]);
 
 function App() {
-  return <></>;
+  return (
+    <>
+      <RouterProvider router={router} />
+    </>
+  );
 }
 
 export default App;
