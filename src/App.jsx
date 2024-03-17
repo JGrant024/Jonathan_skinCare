@@ -1,7 +1,8 @@
 import { useState } from "react";
 import "./App.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Products from "./routes/Products";
+import Products from "./routes/Products"; 
+import ErrorPage from "./pages/ErrorPage";
 
 const router = createBrowserRouter([
   {
@@ -12,6 +13,7 @@ const router = createBrowserRouter([
     path: "/products",
     element: <Products />,
   },
+  
 ]);
 
 function App() {

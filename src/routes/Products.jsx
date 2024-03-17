@@ -1,24 +1,37 @@
-import { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
-function data() {
-  fetch("https://fakestoreapi/products")
+function fetchData() {
+  return fetch("https://fakestoreapi.com/products")
     .then((response) => response.json())
-    .then((json) => console.log(json))
-    .catch((error) => console.error("Error fetching data", error));
-
-  return { data };
+    .then((json) => json)
+    .catch((error) => {
+      console.error("Error fetching data", error);
+      return [];
+    });
 }
 
 function Products() {
-  useEffect(() => {
-    data();
-  }, []);
-  
-  return (
-      <>
-    <h2>Facial Products </h2>
-  </>
-);
+  const [products, setProducts] = useState([]);
 
+  useEffect(() => {
+    fetchData().then((data) => {
+      setProducts(data);
+    });
+  }, []);
+
+  return (
+    <div>
+      <h2>Facial Products </h2>
+      <ul>
+        {products.map((product) => (
+          <li key={product.id}>
+            {product.title}
+            <img src={product.image} alt={product.title} />
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
 }
+
 export default Products;
