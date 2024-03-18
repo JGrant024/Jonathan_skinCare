@@ -20,3 +20,4 @@ app.add_middleware(
 @app.get("/")
 def home(): 
     return{"message:" "Root Route"}
+

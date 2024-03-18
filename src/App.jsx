@@ -1,25 +1,47 @@
-import { useState } from "react";
-import "./App.css";
-import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import Products from "./routes/Products"; 
+import { BrowserRouter as Router } from "react-router-dom"; // Import BrowserRouter from react-router-dom
+import { RouterProvider, createBrowserRouter } from "react-router-dom"; // Import RouterProvider and createBrowserRouter
+import Products from "./routes/Products";
 import ErrorPage from "./pages/ErrorPage";
+import Navbar from "./Navbar";
+import Login from "./Login";
+import Signup from "./Signup";
+// import Layout from "./pages/components/Layout";
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <div>Welcome to Essentiald Skin </div>,
+    // element: <Layout />,
+    errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/home",
+        element: <div>Welcome to Essentiald Skin </div>,
+      },
+
+      {
+        path: "/products",
+        element: <Products />,
+      },
+      {
+        path: "/login",
+        element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <Signup />,
+      },
+    ],
   },
-  {
-    path: "/products",
-    element: <Products />,
-  },
-  
 ]);
 
 function App() {
   return (
     <>
       <RouterProvider router={router} />
+
+      <Router>
+        {" "}
+        <Navbar navbar={Navbar} />
+      </Router>
     </>
   );
 }

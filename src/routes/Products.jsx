@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 function fetchData() {
   return fetch("https://fakestoreapi.com/products")
