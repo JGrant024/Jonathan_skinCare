@@ -5,6 +5,7 @@ import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./Navbar";
 import Login from "./Login";
 import Signup from "./Signup";
+import { AuthProvider } from "./AuthContext";
 // import Layout from "./pages/components/Layout";
 
 const router = createBrowserRouter([
@@ -36,12 +37,14 @@ const router = createBrowserRouter([
 function App() {
   return (
     <>
-      <RouterProvider router={router} />
+      <AuthProvider>
+        <RouterProvider router={router} />
 
-      <Router>
-        {" "}
-        <Navbar navbar={Navbar} />
-      </Router>
+        <Router>
+          {" "}
+          <Navbar navbar={Navbar} />
+        </Router>
+      </AuthProvider>
     </>
   );
 }

@@ -1,4 +1,34 @@
 import { useState } from "react";
+import { Form } from "react-router-dom";
+
+export async function action({ request }) {
+  const formData = await request.formData();
+  const username = formData.get("username");
+  const password = formData.get("password");
+  const LoginData = { username, password };
+
+  try {
+    const url = `${import.meta.env.VITE_SOURCE_URL}/Login`;
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-type": "application/json",
+      },
+      body: JSON.stringify(LoginData),
+    });
+
+    const statusCode = response.status;
+    const data = await response.json();
+
+    const { access_token } = data;
+
+    localStorage.clear();
+    localStorage.setItem("access-token", access_token);
+    return statusCode === 200 ? true : false;
+  } catch (error) {
+    console.error("ERROR:", error);
+  }
+}
 
 const Login = () => {
   const [username, setUsername] = useState("");
@@ -17,7 +47,7 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} method="POST">
         <div>
           <label htmlFor="username">Username:</label>
           <input
@@ -34,12 +64,13 @@ const Login = () => {
             type="password"
             id="password"
             value={password}
+            minLength="8"
             onChange={(e) => setPassword(e.target.value)}
             required
           />
         </div>
         <button type="submit">Login</button>
-      </form>
+      </Form>
     </div>
   );
   function Login() {

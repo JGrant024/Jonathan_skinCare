@@ -9,9 +9,13 @@ const Signup = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     // Here you can perform authentication logic, such as sending a request to a backend server
+    console.log("name", name);
+    console.log("email", email);
     console.log("Username:", username);
     console.log("Password:", password);
     // Reset form fields after submission
+    setName("");
+    setEmail("");
     setUsername("");
     setPassword("");
   };
