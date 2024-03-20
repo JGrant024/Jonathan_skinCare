@@ -1,5 +1,5 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; // Import BrowserRouter from react-router-dom
-import { RouterProvider, createBrowserRouter } from "react-router-dom"; // Import RouterProvider and createBrowserRouter
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
+import { RouterProvider, createBrowserRouter } from "react-router-dom"; 
 import Products from "./routes/Products";
 import ErrorPage from "./pages/ErrorPage";
 import Navbar from "./assets/components/Navbar";
