@@ -6,6 +6,7 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 
 
+
 app = FastAPI() 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
 
@@ -26,7 +27,11 @@ app.add_middleware(
 def home(): 
     return{"message:" "Root Route"}
 
-@app.post("/logout")
-def logout():
-    response = supabase.auth.sign_out()
-    return "success"
+# @app.post("/logout")
+# def logout():
+#     response = supabase.auth.sign_out()
+#     return "success"
+# @app.get("/items")
+# async def read_items(): 
+#     data = supabase.table("products_table").select("*").execute()
+#     return data.data
