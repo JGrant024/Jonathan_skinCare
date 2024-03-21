@@ -1,14 +1,15 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"; 
-import { RouterProvider, createBrowserRouter } from "react-router-dom"; 
-import Products from "./routes/Products";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Products from "./pages/Products";
 import ErrorPage from "./pages/ErrorPage";
-import Navbar from "./assets/components/Navbar";
-import Login from "./Login";
-import Signup from "./Signup";
+import Navbar from "./components/Navbar";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
 import { AuthProvider } from "./AuthContext";
-import Orders, { loader as ordersLoader } from "./routes/Orders";
-import cart from "./pages/cart";
-import shop from "./pages/shop";
+import Orders, { loader as ordersLoader } from "./pages/Orders";
+import ProductsDisplay from "./Shop";
+
+import EPRODUCTS from "./essential_products";
 // import Layout from "./pages/components/Layout";
 
 const router = createBrowserRouter([
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
         element: <Signup />,
       },
       {
+        path: "/eproducts",
+        element: <EPRODUCTS />,
+      },
+      {
         path: "/orders",
         element: <Orders />,
         loader: ordersLoader,
@@ -49,6 +54,8 @@ function App() {
         <RouterProvider router={router} />
         <Router>
           <Navbar navbar={Navbar} />
+          <h1>Shop Around!</h1>
+          <ProductsDisplay />
           <Routes>
             <Route path="/" element={<shop />} />
             <Route path="/login" element={<cart />} />
