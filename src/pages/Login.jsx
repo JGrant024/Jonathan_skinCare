@@ -33,10 +33,21 @@ export async function action({ request }) {
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // Here you can perform authentication logic, such as sending a request to a backend server
+
+    const formData = new FormData();
+    formData.append("username", username);
+    formData.append("password", password);
+
+ 
+
+  
+
     console.log("Username:", username);
     console.log("Password:", password);
     // Reset form fields after submission

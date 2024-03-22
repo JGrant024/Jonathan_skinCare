@@ -10,10 +10,10 @@ import Orders, { loader as ordersLoader } from "./pages/Orders";
 import ProductsDisplay from "./Shop";
 
 import EPRODUCTS from "./essential_products";
-// import Layout from "./pages/components/Layout";
+import Layout from "./components/Layout";
 
 const router = createBrowserRouter([
-  {
+  { 
     // element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
@@ -25,6 +25,10 @@ const router = createBrowserRouter([
       {
         path: "/products",
         element: <Products />,
+      },
+      {
+        path: "/layout",
+        element: <Layout />,
       },
       {
         path: "/login",
