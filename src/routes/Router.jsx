@@ -4,6 +4,7 @@ import ErrorPage from "../pages/ErrorPage";
 import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Layout from "../pages/Layout";
+import Refund from "../pages/Refund";
 
 const router = createBrowserRouter([
   {
@@ -14,6 +15,7 @@ const router = createBrowserRouter([
       { path: "products", element: <Products /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
+      { path: "refund", element: <Refund /> },
       // Define other routes as needed
     ],
   },

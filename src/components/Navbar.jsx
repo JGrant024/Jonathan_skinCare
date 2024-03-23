@@ -3,20 +3,32 @@ import { ShoppingCart } from "phosphor-react";
 
 const Navbar = () => {
   return (
-    <nav className="navBar">
-      <div className="Links">
-        <ul>
-          <Link to="/">Home</Link>
-          <Link to="/login">Login</Link>
-
-          <Link to="/Products">Shop</Link>
-          <Link to="/orders">Orders</Link>
-          <Link to="/cart">
-            <ShoppingCart size={44} />
-          </Link>
+    <aside className="asideNav">
+      <nav>
+        <ul className="asideLinks">
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/login">Login</Link>
+          </li>
+          <li>
+            <Link to="/Products">Shop</Link>
+          </li>
+          <li>
+            <Link to="/orders">Orders</Link>
+          </li>
+          <li>
+            <Link to="/refund">Refund Policy</Link>
+          </li>
+          <li>
+            <Link to="/cart">
+              <ShoppingCart size={44} />
+            </Link>
+          </li>
         </ul>
-      </div>
-    </nav>
+      </nav>
+    </aside>
   );
 };
 
