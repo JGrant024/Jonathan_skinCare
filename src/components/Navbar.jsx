@@ -16,9 +16,6 @@ const Navbar = () => {
             <Link to="/Products">Shop</Link>
           </li>
           <li>
-            <Link to="/orders">Orders</Link>
-          </li>
-          <li>
             <Link to="/refund">Refund Policy</Link>
           </li>
           <li>
