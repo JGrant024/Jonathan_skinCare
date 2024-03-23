@@ -52,7 +52,7 @@ export const ESSENTIAL_PRODUCTS = [
     price: "9.99",
     productImage: eproduct6,
     description:
-      "For those of you who struggle to wash your face after a long day of work, using a headband will make that process much easier by doing the work of keeping hair out of the equation.",
+      "Using a headband will make that process of facial washing much easier by doing the work of keeping hair out of the way.",
   },
 ];
 
