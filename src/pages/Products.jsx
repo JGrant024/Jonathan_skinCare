@@ -23,6 +23,7 @@ function Products() {
             />
             <h3>{product.productName}</h3>
             <p>${product.price}</p>
+            <button>Add to Cart</button>
           </div>
         ))}
       </div>
