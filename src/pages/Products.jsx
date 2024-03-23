@@ -1,35 +1,31 @@
-import { useEffect, useState } from "react";
-
-function fetchData() {
-  return fetch("https://fakestoreapi.com/products")
-    .then((response) => response.json())
-    .then((json) => json)
-    .catch((error) => {
-      console.error("Error fetching data", error);
-      return [];
-    });
-}
+import ESSENTIAL_PRODUCTS from "../essential_products";
 
 function Products() {
-  const [products, setProducts] = useState([]);
-
-  useEffect(() => {
-    fetchData().then((data) => {
-      setProducts(data);
-    });
-  }, []);
-
   return (
     <div>
-      <h2>Facial Products </h2>
-      <ul>
-        {products.map((product) => (
-          <li key={product.id}>
-            {product.title}
-            <img src={product.image} alt={product.title} />
-          </li>
+      <h1> Shop From Our Natural Products </h1>
+      <div
+        style={{
+          display: "flex",
+          flexWrap: "wrap",
+          justifyContent: "space-around",
+        }}
+      >
+        {ESSENTIAL_PRODUCTS.map((product) => (
+          <div
+            key={product.id}
+            style={{ width: "200px", margin: "10px", textAlign: "center" }}
+          >
+            <img
+              src={product.productImage}
+              alt={product.productName}
+              style={{ width: "100%", height: "auto" }}
+            />
+            <h3>{product.productName}</h3>
+            <p>${product.price}</p>
+          </div>
         ))}
-      </ul>
+      </div>
     </div>
   );
 }
