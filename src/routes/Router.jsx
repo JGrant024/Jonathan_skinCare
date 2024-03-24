@@ -5,6 +5,9 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 import Layout from "../pages/Layout";
 import Refund from "../pages/Refund";
+import Cart from "../components/cart";
+import CartPage from "../pages/CartPage";
+import Home from "../pages/Home";
 
 const router = createBrowserRouter([
   {
@@ -12,10 +15,13 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
+      { path: "/home", element: <Home /> },
       { path: "products", element: <Products /> },
       { path: "login", element: <Login /> },
       { path: "signup", element: <Signup /> },
       { path: "refund", element: <Refund /> },
+      { path: "cart", element: <Cart /> },
+      { path: "CartPage", element: <CartPage /> },
       // Define other routes as needed
     ],
   },

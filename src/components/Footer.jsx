@@ -11,6 +11,7 @@ const Footer = () => {
         Privacy Policy
       </a>
       <div>
+        Follow Us on FaceBook!
         <a
           href="https://www.facebook.com/essetialdskin"
           target="_blank"
@@ -18,6 +19,7 @@ const Footer = () => {
         >
           <FaFacebook />
         </a>
+        Follow Us
         <a
           href="https://www.instagram.com/essentialdskin/?hl=en"
           target="_blank"
@@ -31,14 +33,13 @@ const Footer = () => {
 };
 
 const footerStyle = {
-  background: "#333",
-  color: "brown",
+  background: "#d7812587",
+  color: "#d7812587",
   textAlign: "center",
-  padding: "10px",
   position: "fixed",
-  left: "0",
-  bottom: "0",
+  bottom: "",
   width: "100%",
+
 };
 
 const linkStyle = {

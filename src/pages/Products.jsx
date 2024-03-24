@@ -1,7 +1,12 @@
 import ESSENTIAL_PRODUCTS from "../essential_products";
 import "./Products.css";
+import "../pages/Products.css";
+import { useContext } from "react";
+import { ShopContext } from "./Shop-context";
 
 function Products() {
+  const { addToCart, cartItems } = useContext(ShopContext);
+
   return (
     <div>
       <h1> Shop From Our Natural Products </h1>
@@ -19,27 +24,35 @@ function Products() {
           justifyContent: "space-around",
         }}
       >
-        {ESSENTIAL_PRODUCTS.map((product) => (
-          <div className="flip-card" key={product.id}>
-            <div className="flip-card-inner">
-              <div className="flip-card-front" style={{ textAlign: "center" }}>
-                <img
-                  src={product.productImage}
-                  alt={product.productName}
-                  style={{ width: "100%", height: "auto" }}
-                />
-                <h3>{product.productName}</h3>
-                <p>${product.price}</p>
-              </div>
-              <div className="flip-card-back">
-                <h3>{product.productName}</h3>
-                <p>{product.description}</p>{" "}
-                {/* Assuming there's a description field */}
-                <button>Add to Cart</button>
+        {ESSENTIAL_PRODUCTS.map((product) => {
+          const cartItemsAmount = cartItems[product.id] || 0;
+          return (
+            <div className="flip-card" key={product.id}>
+              <div className="flip-card-inner">
+                <div
+                  className="flip-card-front"
+                  style={{ textAlign: "center" }}
+                >
+                  <img
+                    src={product.productImage}
+                    alt={product.productName}
+                    style={{ width: "100%", height: "auto" }}
+                  />
+                  <h3>{product.productName}</h3>
+                  <p>${product.price}</p>
+                </div>
+                <div className="flip-card-back">
+                  <h3>{product.productName}</h3>
+                  <p>{product.description}</p>
+                  <button onClick={() => addToCart(product.id)}>
+                    Add to Cart{" "}
+                    {cartItemsAmount > 0 && <>({cartItemsAmount})</>}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </div>
   );
