@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { loadPayPalScript } from "./utilities/loadPayPalScript";
 import { RouterProvider } from "react-router-dom";
 import { AuthProvider } from "./AuthContext";
 import { ShopContextProvider } from "./pages/Shop-context";
@@ -6,19 +8,24 @@ import router from "./routes/Router";
 import "./index.css";
 
 function App() {
+  useEffect(() => {
+    loadPayPalScript(
+      "AZ1WLVmWHoBk0Vy0HmoKZwgqHXuL_8A1oBOZFDnfnsKxNEteVeYhip7yTA-mz4vyyzKo8-sWydk10aIx",
+      "buttons,card-fields"
+    )
+      .then((paypal) => {
+        console.log("PayPal SDK loaded", paypal);
+      })
+      .catch((error) => {
+        console.error("Failed to load PayPal SDK", error);
+      });
+  }, []);
   return (
-    <AuthProvider>
-      <ShopContextProvider>
-        {/* RouterProvider is used here to wrap the part of your app that should be controlled by the router. */}
-        <RouterProvider router={router}>
-          {/* Your routes will be rendered here based on the router configuration */}
-          <div className="App">
-            {/* Assuming Footer is static and should always be rendered */}
-            <Footer />
-          </div>
-        </RouterProvider>
-      </ShopContextProvider>
-    </AuthProvider>
+    <ShopContextProvider>
+      <RouterProvider router={router}>
+        <div className="App" />
+      </RouterProvider>
+    </ShopContextProvider>
   );
 }
 

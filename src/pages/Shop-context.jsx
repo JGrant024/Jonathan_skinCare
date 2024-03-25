@@ -1,17 +1,17 @@
-import Products from "./Products";
 import { createContext, useState } from "react";
 
 export const ShopContext = createContext(null);
 
-const getDefaultCart = () => {
-  const cart = {};
-  for (let i = 1; i <= Products.length; i++) {
-    cart[i] = 0;
-  }
-  return cart;
-};
-export const ShopContextProvider = (props) => {
-  const [cartItems, setCartItems] = useState(getDefaultCart());
+// const getDefaultCart = () => {
+//   const cart = {};
+//   for (let i = 1; i <= Products.length; i++) {
+//     cart[i] = 0;
+//   }
+//   return cart;
+// };
+// eslint-disable-next-line react/prop-types
+export const ShopContextProvider = ({ children }) => {
+  const [cartItems, setCartItems] = useState([]);
 
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
@@ -29,8 +29,6 @@ export const ShopContextProvider = (props) => {
     removeFromCart,
   };
   return (
-    <ShopContext.Provider value={contextValue}>
-      {props.children}
-    </ShopContext.Provider>
+    <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
   );
 };

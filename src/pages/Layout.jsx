@@ -1,13 +1,13 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
-import logo from "../assets/Images/Essentiald_logo.avif";
+import Footer from "../components/Footer";
 
 function Layout() {
   return (
     <>
       <Navbar />
-      <div></div>
       <Outlet />
+      <Footer />
     </>
   );
 }

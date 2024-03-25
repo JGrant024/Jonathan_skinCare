@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Form } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Login.css";
@@ -18,7 +17,7 @@ export async function action({ request }) {
       },
       body: JSON.stringify(LoginData),
     });
-
+    console.log(response);
     const statusCode = response.status;
     const data = await response.json();
 
@@ -33,56 +32,24 @@ export async function action({ request }) {
 }
 
 const Login = () => {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    const formData = new FormData();
-    formData.append("username", username);
-    formData.append("password", password);
-
-    console.log("Username:", username);
-    console.log("Password:", password);
-    // Reset form fields after submission
-    setUsername("");
-    setPassword("");
-  };
-
+  console.log("VITE", import.meta.env.VITE_SOURCE_URL);
   return (
     <div>
       <h2>Login</h2>
-      <Form onSubmit={handleSubmit} method="POST" className="login-form">
+      <Form method="POST" className="login-form">
         <div>
           <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+          <input type="text" id="username" required />
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            minLength="8"
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" id="password" minLength="8" required />
         </div>
         <button type="submit">Login</button>
         <Link to="/signup">Sign Up</Link>
       </Form>
     </div>
   );
-  function Login() {
-    return <Login />;
-  }
 };
 
 export default Login;

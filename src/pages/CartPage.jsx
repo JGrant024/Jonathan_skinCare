@@ -1,9 +1,8 @@
-import React, { useContext } from "react";
-import { ShopContext } from "./Shop-context";
+import { cartItems, addToCart, removeFromCart } from "./Shop-context";
 import ESSENTIAL_PRODUCTS from "../essential_products";
 
 const CartPage = () => {
-  const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
+  // const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
 
   const calculateTotal = () => {
     return Object.keys(cartItems)
@@ -12,7 +11,7 @@ const CartPage = () => {
         const item = ESSENTIAL_PRODUCTS.find(
           (product) => product.id.toString() === itemId
         );
-        return total + item.price * cartItems[itemId];
+        return total + item.price + cartItems[itemId];
       }, 0)
       .toFixed(2);
   };

@@ -1,12 +1,9 @@
 import ESSENTIAL_PRODUCTS from "../essential_products";
 import "./Products.css";
 import "../pages/Products.css";
-import { useContext } from "react";
-import { ShopContext } from "./Shop-context";
+import { addToCart, cartItems } from "./Shop-context";
 
 function Products() {
-  const { addToCart, cartItems } = useContext(ShopContext);
-
   return (
     <div>
       <h1> Shop From Our Natural Products </h1>
@@ -25,7 +22,7 @@ function Products() {
         }}
       >
         {ESSENTIAL_PRODUCTS.map((product) => {
-          const cartItemsAmount = cartItems[product.id] || 0;
+          const cartItemsAmount = cartItems[product.itemId] || 0;
           return (
             <div className="flip-card" key={product.id}>
               <div className="flip-card-inner">
