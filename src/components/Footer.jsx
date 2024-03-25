@@ -37,9 +37,8 @@ const footerStyle = {
   color: "#d7812587",
   textAlign: "center",
   position: "fixed",
-  bottom: "",
+  bottom: "20",
   width: "100%",
-
 };
 
 const linkStyle = {

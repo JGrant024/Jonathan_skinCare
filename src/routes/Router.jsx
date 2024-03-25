@@ -8,6 +8,8 @@ import Refund from "../pages/Refund";
 import Cart from "../components/cart";
 import CartPage from "../pages/CartPage";
 import Home from "../pages/Home";
+import ContactDeliveryForm from "../pages/ContactDeliveryForm";
+import PaymentForm from "../pages/PaymentForm";
 
 const router = createBrowserRouter([
   {
@@ -21,7 +23,9 @@ const router = createBrowserRouter([
       { path: "signup", element: <Signup /> },
       { path: "refund", element: <Refund /> },
       { path: "cart", element: <Cart /> },
-      { path: "CartPage", element: <CartPage /> },
+      { path: "cartpage", element: <CartPage /> },
+      { path: "contact", element: <ContactDeliveryForm /> },
+      { path: "payment", element: <PaymentForm /> },
       // Define other routes as needed
     ],
   },

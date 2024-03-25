@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Form } from "react-router-dom";
 import { Link } from "react-router-dom";
+import "./Login.css";
 
 export async function action({ request }) {
   const formData = await request.formData();
@@ -52,7 +53,7 @@ const Login = () => {
   return (
     <div>
       <h2>Login</h2>
-      <Form onSubmit={handleSubmit} method="POST">
+      <Form onSubmit={handleSubmit} method="POST" className="login-form">
         <div>
           <label htmlFor="username">Username:</label>
           <input
