@@ -11,6 +11,7 @@ import Home from "../pages/Home";
 import ContactDeliveryForm from "../pages/ContactDeliveryForm";
 import PaymentForm from "../pages/PaymentForm";
 import OrderPage from "../pages/OrderPage";
+import UserProfilePage from "../pages/UserProfilePage";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +29,8 @@ const router = createBrowserRouter([
       { path: "contact", element: <ContactDeliveryForm /> },
       { path: "payment", element: <PaymentForm /> },
       { path: "orders", element: <OrderPage /> },
+      { path: "profile", element: <UserProfilePage /> },
+
       // Define other routes as needed
     ],
   },

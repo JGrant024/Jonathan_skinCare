@@ -1,7 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { loadPayPalScript } from "./utilities/loadPayPalScript";
 import { RouterProvider } from "react-router-dom";
 import { ShopContextProvider } from "./pages/Shop-context";
+import supabase from "./SupabaseClient";
+import Login from "./pages/Login";
+import UserProfilePage from "./pages/UserProfilePage";
 import router from "./routes/Router";
 import "./index.css";
 
@@ -22,6 +25,13 @@ function App() {
     <ShopContextProvider>
       <RouterProvider router={router}>
         <div className="App" />
+        {/* <div>
+          {!session ? (
+            <Login onLogin={() => setSession(supabase.auth.session())} />
+          ) : (
+            <UserProfilePage />
+          )}
+        </div> */}
       </RouterProvider>
     </ShopContextProvider>
   );

@@ -1,4 +1,4 @@
-import React from "react";
+
 import ESSENTIAL_PRODUCTS from "./essential_products";
 
 const ProductsDisplay = () => {

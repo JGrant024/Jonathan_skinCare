@@ -1,81 +1,50 @@
-import { useState } from "react";
+import { Form } from "react-router-dom";
+import { Link } from "react-router-dom";
+import supabase from "../SupabaseClient";
 
+import "./Login.css";
 
-const Signup = () => {
-  const [name, setName] = useState("");
-  const [email, setEmail] = useState("");
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    // Here you can perform authentication logic, such as sending a request to a backend server
-    console.log("name", name);
-    console.log("email", email);
-    console.log("Username:", username);
-    console.log("Password:", password);
-    // Reset form fields after submission
-    setName("");
-    setEmail("");
-    setUsername("");
-    setPassword("");
-  };
-
+export async function action({ request }) {
+  const formData = await request.formData();
+  const firstName = formData.get("First Name");
+  const lastName = formData.get("Last Name");
+  const username = formData.get("username");
+  const password = formData.get("password");
+  const { data, error } = await supabase.auth.signUp({
+    firstName: firstName,
+    lastName: lastName,
+    username: username,
+    password: password,
+  });
+  console.log("Data", data);
+  console.log("Error", error);
+}
+const Login = () => {
+  console.log("VITE", import.meta.env.VITE_SOURCE_URL);
   return (
     <div>
-      <h2>Sign Up Here!</h2>
-      <form onSubmit={handleSubmit}>
+      <h2>Sign Up!</h2>
+      <Form method="POST" className="login-form">
         <div>
-          <label htmlFor="name">Name</label>
-          <input
-            type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
+          <label htmlFor="firstName">First Name:</label>
+          <input type="text" id="firstName" required />
         </div>
-      </form>
-      <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="email">Email</label>
-          <input
-            type="text"
-            id="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
+          <label htmlFor="lastName">Last Name:</label>
+          <input type="text" id="firstName" required />
         </div>
-      </form>
-      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="username">Username:</label>
-          <input
-            type="text"
-            id="username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
-          />
+          <input type="text" id="username" required />
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input
-            type="password"
-            id="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
+          <input type="password" id="password" minLength="8" required />
         </div>
-        <button type="submit">Sign Up</button>
-      </form>
+        <button type="submit">Sign Up! </button>
+      </Form>
     </div>
   );
-  function Login() {
-    return <Login />;
-  }
 };
 
-export default Signup;
+export default Login;

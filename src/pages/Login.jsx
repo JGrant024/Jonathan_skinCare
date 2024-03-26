@@ -1,38 +1,61 @@
-import { Form } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Form, Link, useNavigate, useActionData } from "react-router-dom";
 import supabase from "../SupabaseClient";
 
 import "./Login.css";
 
 export async function action({ request }) {
+  console.log("ACTION???");
   const formData = await request.formData();
-  const username = formData.get("username");
+  const email = formData.get("email");
   const password = formData.get("password");
   const { data, error } = await supabase.auth.signInWithPassword({
-    username: username,
+    email: email,
     password: password,
   });
   console.log("Data", data);
   console.log("Error", error);
+
+  if (data && !error) {
+    return true;
+    // navigate("/profile");
+  } else {
+    return false;
+  }
 }
 const Login = () => {
-  console.log("VITE", import.meta.env.VITE_SOURCE_URL);
-  return (
+  const navigate = useNavigate();
+  const response = useActionData();
+  console.log("USE LOADER DATA", response);
+
+  return !response ? (
     <div>
       <h2>Login</h2>
       <Form method="POST" className="login-form">
         <div>
-          <label htmlFor="username">Username:</label>
-          <input type="text" id="username" required />
+          <label htmlFor="email">Email:</label>
+          <input type="text" id="email" name="email" required />
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" minLength="8" required />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            minLength="8"
+            required
+          />
         </div>
+        <br />
         <button type="submit">Login</button>
-        <Link to="/signup">Sign Up</Link>
+        <br />
+        <br />
+        <button type="button">
+          <Link to="/signup">Sign Up</Link>
+        </button>
       </Form>
     </div>
+  ) : (
+    navigate("/profile")
   );
 };
 

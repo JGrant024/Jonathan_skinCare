@@ -60,6 +60,7 @@ function PaymentForm() {
           onChange={handleChange}
         />
       </label>
+      <br />
       <button type="submit">Pay Now</button>
     </form>
   );

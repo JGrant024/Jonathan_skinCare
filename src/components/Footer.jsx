@@ -33,7 +33,7 @@ const Footer = () => {
 };
 
 const footerStyle = {
-  background: "#d7812587",
+  background: "black",
   color: "#d7812587",
   textAlign: "center",
   position: "fixed",
