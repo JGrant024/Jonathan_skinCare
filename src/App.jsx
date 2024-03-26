@@ -1,9 +1,7 @@
 import { useEffect } from "react";
 import { loadPayPalScript } from "./utilities/loadPayPalScript";
 import { RouterProvider } from "react-router-dom";
-import { AuthProvider } from "./AuthContext";
 import { ShopContextProvider } from "./pages/Shop-context";
-import Footer from "./components/Footer";
 import router from "./routes/Router";
 import "./index.css";
 

@@ -1,9 +1,12 @@
 import ESSENTIAL_PRODUCTS from "../essential_products";
 import "./Products.css";
 import "../pages/Products.css";
-import { addToCart, cartItems } from "./Shop-context";
+import { useShop } from "./Shop-context";
 
 function Products() {
+  console.log("USE SHOP", useShop);
+  const { cartItems } = useShop();
+  const addToCart = () => {};
   return (
     <div>
       <h1> Shop From Our Natural Products </h1>

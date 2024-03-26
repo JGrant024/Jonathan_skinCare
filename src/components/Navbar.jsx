@@ -5,7 +5,17 @@ const Navbar = () => {
   return (
     <aside className="asideNav">
       <nav>
-        <ul className="asideLinks">
+        <ul
+          className="asideLinks"
+          style={{
+            listStyle: "none",
+            margin: "0",
+            padding: "0",
+            display: "flex",
+            gap: "20px",
+            width: "min-content",
+          }}
+        >
           <li>
             <Link to="/home">Home</Link>
           </li>

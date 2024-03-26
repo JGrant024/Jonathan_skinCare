@@ -1,4 +1,3 @@
-import { createContext } from "react";
 import { ShopContext } from "../pages/Shop-context";
 import CartPage from "../pages/CartPage";
 import ESSENTIAL_PRODUCTS from "../essential_products";

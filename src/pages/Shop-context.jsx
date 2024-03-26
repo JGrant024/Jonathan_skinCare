@@ -1,6 +1,6 @@
-import { createContext, useState } from "react";
+import { createContext, useState, useContext } from "react";
 
-export const ShopContext = createContext(null);
+export const ShopContext = createContext();
 
 // const getDefaultCart = () => {
 //   const cart = {};
@@ -23,12 +23,13 @@ export const ShopContextProvider = ({ children }) => {
     });
   };
 
-  const contextValue = {
-    cartItems,
-    addToCart,
-    removeFromCart,
-  };
   return (
-    <ShopContext.Provider value={contextValue}>{children}</ShopContext.Provider>
+    <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
+      {children}
+    </ShopContext.Provider>
   );
 };
+
+export function useShop() {
+  return useContext(ShopContext);
+}

@@ -1,8 +1,8 @@
-import { cartItems, addToCart, removeFromCart } from "./Shop-context";
+import { useShop } from "./Shop-context";
 import ESSENTIAL_PRODUCTS from "../essential_products";
 
 const CartPage = () => {
-  // const { cartItems, addToCart, removeFromCart } = useContext(ShopContext);
+  const { cartItems, addToCart, removeFromCart } = useShop();
 
   const calculateTotal = () => {
     return Object.keys(cartItems)
