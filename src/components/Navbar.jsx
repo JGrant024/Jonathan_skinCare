@@ -14,6 +14,7 @@ const Navbar = () => {
             display: "flex",
             gap: "20px",
             width: "min-content",
+            color: "tan",
           }}
         >
           <li>

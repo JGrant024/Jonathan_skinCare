@@ -11,13 +11,20 @@ function Home() {
           color: "tan",
         }}
       >
-        <h1>Welcome to Essentiald Skincare </h1>
+        <h1 style={{ fontFamily: "Oswald" }}>
+          Welcome to Essentiald Skincare{" "}
+        </h1>
       </div>
       <div>
         <img src={logo} alt="EssentialD Skin Logo" />
         <p
           style={{
             color: "tan",
+            fontFamily: "Oswald",
+            fontSize: "30px",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
         >
           Try out some of the nourshing Vanilla Butter Cream{" "}

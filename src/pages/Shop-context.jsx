@@ -2,27 +2,27 @@ import { createContext, useState, useContext } from "react";
 
 export const ShopContext = createContext();
 
-// const getDefaultCart = () => {
-//   const cart = {};
-//   for (let i = 1; i <= Products.length; i++) {
-//     cart[i] = 0;
-//   }
-//   return cart;
-// };
 // eslint-disable-next-line react/prop-types
 export const ShopContextProvider = ({ children }) => {
-  const [cartItems, setCartItems] = useState([]);
+  const [cartItems, setCartItems] = useState({});
 
   const addToCart = (itemId) => {
-    setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+    setCartItems((prev) => ({ ...prev, [itemId]: (prev[itemId] || 0) + 1 }));
   };
   const removeFromCart = (itemId) => {
     setCartItems((prev) => {
-      const newCount = prev[itemId] - 1;
-      return { ...prev, [itemId]: newCount >= 0 ? newCount : 0 };
+      const newCount = (prev[itemId] || 0) - 1;
+      if (newCount > 0) {
+        return {
+          ...prev,
+          [itemId]: newCount,
+        };
+      } else {
+        const { [itemId]: _, ...rest } = prev;
+        return rest;
+      }
     });
   };
-
   return (
     <ShopContext.Provider value={{ cartItems, addToCart, removeFromCart }}>
       {children}

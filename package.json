@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "-": "^0.0.1",
+    "@paypal/react-paypal-js": "^8.2.0",
     "@supabase/supabase-js": "^2.40.0",
     "phosphor-react": "^1.4.1",
     "react": "^18.2.0",
