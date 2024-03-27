@@ -26,6 +26,7 @@ export async function action({ request }) {
 const Signup = () => {
   const navigate = useNavigate();
   const response = useActionData();
+
   console.log("VITE", import.meta.env.VITE_SOURCE_URL);
 
   return !response ? (
