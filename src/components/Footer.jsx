@@ -1,4 +1,5 @@
 import { FaFacebook, FaInstagram } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -7,26 +8,28 @@ const Footer = () => {
         {" "}
         ©2024 Essentiald Skin Care. <p>All rights reserved.</p>
       </p>
-      <a href="/privacy-policy" style={linkStyle}>
-        Privacy Policy
-      </a>
+
       <div>
-        Follow Us on FaceBook!
+        Follow Us on Social Media!
         <a
           href="https://www.facebook.com/essetialdskin"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FaFacebook />
+          <FaFacebook style={{ fontSize: "25px " }} />
+
+          <a
+            href="https://www.instagram.com/essentialdskin/?hl=en"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FaInstagram style={{ fontSize: "25px " }} />
+          </a>
+          <br />
         </a>
-        Follow Us
-        <a
-          href="https://www.instagram.com/essentialdskin/?hl=en"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <FaInstagram />
-        </a>
+        <li style={{ listStyle: "none" }}>
+          <Link to="/refund">Refund Policy</Link>
+        </li>
       </div>
     </footer>
   );
@@ -37,8 +40,9 @@ const footerStyle = {
   color: "#d7812587",
   textAlign: "center",
   position: "fixed",
-  bottom: "20",
+  bottom: "0",
   width: "100%",
+  height: "165px",
 };
 
 const linkStyle = {

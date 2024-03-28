@@ -6,10 +6,12 @@ export async function action({ request }) {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
+  const full_name = formData.get("full_name");
 
   const { data, error } = await supabase.auth.signUp({
     email: email,
     password: password,
+    full_name: full_name,
   });
   console.log("Data", data);
   console.log("Error", error);
@@ -31,6 +33,10 @@ const Signup = () => {
     <div>
       <h2>Sign Up!</h2>
       <Form method="POST">
+        <div>
+          <label htmlFor="name">Full Name:</label>
+          <input type="text" id="email" name="name" required />
+        </div>
         <div>
           <label htmlFor="email">Email:</label>
           <input type="text" id="email" name="email" required />

@@ -27,9 +27,6 @@ const Navbar = () => {
             <Link to="/Products">Shop</Link>
           </li>
           <li>
-            <Link to="/refund">Refund Policy</Link>
-          </li>
-          <li>
             <Link to="/cart">
               <ShoppingCart size={44} />
             </Link>
