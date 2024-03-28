@@ -2,13 +2,12 @@ import { createBrowserRouter } from "react-router-dom";
 import Products from "../pages/Products";
 import ErrorPage from "../pages/ErrorPage";
 import Login, { action as loginAction } from "../pages/Login";
-import Signup from "../pages/Signup";
+import Signup, { action as SignupAction } from "../pages/Signup";
 import Layout from "../pages/Layout";
 import Refund from "../pages/Refund";
-import Cart from "../components/cart";
 import CartPage from "../pages/CartPage";
 import Home from "../pages/Home";
-import ContactDeliveryForm from "../pages/ContactDeliveryForm";
+import ContactDeliveryForm from "../pages/ContactDeliveryForm 2";
 import PaymentForm from "../pages/PaymentForm";
 import OrderPage from "../pages/OrderPage";
 import UserProfilePage from "../pages/UserProfilePage";
@@ -22,16 +21,13 @@ const router = createBrowserRouter([
       { path: "/home", element: <Home /> },
       { path: "products", element: <Products /> },
       { path: "login", element: <Login />, action: loginAction },
-      { path: "signup", element: <Signup /> },
+      { path: "signup", element: <Signup />, action: SignupAction },
       { path: "refund", element: <Refund /> },
-      { path: "cart", element: <Cart /> },
-      { path: "cartpage", element: <CartPage /> },
+      { path: "cart", element: <CartPage /> },
       { path: "contact", element: <ContactDeliveryForm /> },
       { path: "payment", element: <PaymentForm /> },
       { path: "orders", element: <OrderPage /> },
       { path: "profile", element: <UserProfilePage /> },
-
-      // Define other routes as needed
     ],
   },
 ]);

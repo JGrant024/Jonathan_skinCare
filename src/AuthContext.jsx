@@ -1,30 +1,46 @@
 import { createContext, useContext, useState, useEffect } from "react";
-import PropTypes from "prop-types";
+import supabase from "./SupabaseClient";
 
 const AuthContext = createContext();
+export const useAuth = () => useContext(AuthContext);
 
-export function AuthProvider({ children }) {
-  const [isAuth, setisAuth] = useState(false);
+export const AuthProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
 
   useEffect(() => {
-    if (localStorage.getItem("access_token")) {
-      setisAuth(true);
-    }
+    // Define an async function to fetch the current session
+    const fetchSession = async () => {
+      const { data: session, error } = await supabase.auth.getSession();
+      if (error) {
+        console.error("Error getting current session:", error.message);
+      } else {
+        setUser(session?.user ?? null);
+      }
+    };
+
+    // Call the async function
+    fetchSession();
+
+    // Set up the authentication state change listener
+    const { data: authListener } = supabase.auth.onAuthStateChange(
+      (event, session) => {
+        setUser(session?.user ?? null);
+      }
+    );
   }, []);
-  return (
-    <AuthContext.Provider value={{ isAuth, setisAuth }}>
-      {children}
-    </AuthContext.Provider>
-  );
-}
 
-export function useAuth() {
-  return useContext(AuthContext);
-}
+  const value = {
+    user,
+    isAuth: !!user,
+    login: async (email, password) => {
+      const { error } = await supabase.auth.signIn({ email, password });
+      if (error) throw error;
+    },
+    logout: async () => {
+      const { error } = await supabase.auth.signOut();
+      if (error) throw error;
+    },
+  };
 
-AuthProvider.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };

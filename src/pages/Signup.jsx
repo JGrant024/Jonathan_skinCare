@@ -4,13 +4,10 @@ import "./Login.css";
 
 export async function action({ request }) {
   const formData = await request.formData();
-  const firstName = formData.get("First Name");
-  const lastName = formData.get("Last Name");
-  const email = formData.get("email ");
+  const email = formData.get("email");
   const password = formData.get("password");
+
   const { data, error } = await supabase.auth.signUp({
-    firstName: firstName,
-    lastName: lastName,
     email: email,
     password: password,
   });
@@ -23,33 +20,33 @@ export async function action({ request }) {
     return false;
   }
 }
+
 const Signup = () => {
   const navigate = useNavigate();
   const response = useActionData();
 
-  console.log("VITE", import.meta.env.VITE_SOURCE_URL);
+  console.log(response);
 
   return !response ? (
     <div>
       <h2>Sign Up!</h2>
-      <Form method="POST" className="login-form">
-        <div>
-          <label htmlFor="firstName">First Name:</label>
-          <input type="text" id="firstName" required />
-        </div>
-        <div>
-          <label htmlFor="lastName">Last Name:</label>
-          <input type="text" id="firstName" required />
-        </div>
+      <Form method="POST">
         <div>
           <label htmlFor="email">Email:</label>
-          <input type="text" id="email" required />
+          <input type="text" id="email" name="email" required />
         </div>
         <div>
           <label htmlFor="password">Password:</label>
-          <input type="password" id="password" minLength="8" required />
+          <input
+            type="password"
+            id="password"
+            name="password"
+            minLength="8"
+            required
+          />
         </div>
         <br />
+
         <button type="submit">Sign Up! </button>
       </Form>
     </div>

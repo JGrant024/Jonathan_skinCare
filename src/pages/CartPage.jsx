@@ -3,17 +3,18 @@ import ESSENTIAL_PRODUCTS from "../essential_products";
 
 const CartPage = () => {
   const { cartItems, addToCart, removeFromCart } = useShop();
-
+  console.log("CART ITEMS", cartItems);
   const calculateTotal = () => {
-    return Object.keys(cartItems)
-      .reduce((total, itemId) => {
-        // Assuming you have a method to get item details by ID
-        const item = ESSENTIAL_PRODUCTS.find(
-          (product) => product.id.toString() === itemId
-        );
-        return total + item.price + cartItems[itemId];
-      }, 0)
-      .toFixed(2);
+    // return Object.keys(cartItems)
+    //   .reduce((total, itemId) => {
+    //     // Assuming you have a method to get item details by ID
+    //     const item = ESSENTIAL_PRODUCTS.find(
+    //       (product) => product.id.toString() === itemId
+    //     );
+    //     return total + item.price + cartItems[itemId];
+    //   }, 0)
+    //   .toFixed(2);
+    return;
   };
 
   return (

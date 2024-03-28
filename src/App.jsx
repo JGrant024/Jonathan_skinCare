@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react";
-import { loadPayPalScript } from "./utilities/loadPayPalScript";
 import { RouterProvider } from "react-router-dom";
 import { ShopContextProvider } from "./pages/Shop-context";
-import { CartProvider } from "./components/cart";
-import supabase from "./SupabaseClient";
-import Login from "./pages/Login";
-import UserProfilePage from "./pages/UserProfilePage";
 import { PayPalScriptProvider } from "@paypal/react-paypal-js";
 import router from "./routes/Router";
 import "./index.css";
 import { Car } from "phosphor-react";
+import { AuthProvider } from "./AuthContext";
 
 function App() {
   return (
@@ -20,20 +15,13 @@ function App() {
         components: "buttons,card-fields",
       }}
     >
-      <ShopContextProvider>
-        <CartProvider>
+      <AuthProvider>
+        <ShopContextProvider>
           <RouterProvider router={router}>
             <div className="App" />
-            {/* <div>
-          {!session ? (
-            <Login onLogin={() => setSession(supabase.auth.session())} />
-          ) : (
-            <UserProfilePage />
-          )}
-        </div> */}
           </RouterProvider>
-        </CartProvider>
-      </ShopContextProvider>
+        </ShopContextProvider>
+      </AuthProvider>
     </PayPalScriptProvider>
   );
 }
