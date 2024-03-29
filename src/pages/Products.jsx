@@ -9,16 +9,24 @@ function Products() {
 
   return (
     <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-      <h1 className="text-2xl font-bold text-center text-gray-900 mt-6">Shop From Our Natural Products</h1>
+      <h1 className="text-2xl font-bold text-center text-gray-900 mt-6">
+        Shop From Our Natural Products
+      </h1>
       <p className="text-center text-gray-600 mt-2">
-        Thank you for stopping by our site. We hope that you enjoy our products as they are handmade with 100% natural ingredients.
+        Thank you for stopping by our site. We hope that you enjoy our products
+        as they are handmade with 100% natural ingredients.
       </p>
-      <p className="font-semibold text-center mt-4">Shop Our Satin Collection!</p>
+      <p className="font-semibold text-center mt-4">
+        Shop Our Satin Collection!
+      </p>
       <div className="flex flex-wrap justify-center gap-6 mt-8">
         {ESSENTIAL_PRODUCTS.map((product) => {
           const cartItemsAmount = cartItems[product.id] || 0;
           return (
-            <div className="w-64 bg-white shadow-lg rounded-lg overflow-hidden" key={product.id}>
+            <div
+              className="w-64 bg-white shadow-lg rounded-lg overflow-hidden"
+              key={product.id}
+            >
               <img
                 className="w-full h-48 object-cover object-center"
                 src={product.productImage}
@@ -30,7 +38,7 @@ function Products() {
                 <p className="mt-2 text-gray-500">{product.description}</p>
                 <div className="flex justify-between items-center mt-4">
                   <button
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    className="bg-yellow-400  text-white font-bold py-2 px-4 rounded"
                     onClick={() => addToCart(product.id)}
                   >
                     Add to Cart {cartItemsAmount > 0 && `(${cartItemsAmount})`}
