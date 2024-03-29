@@ -7,7 +7,6 @@ import Skin_Investment from "../assets/Images/Skin_Investment.png";
 import Boxed_oil from "../assets/Images/Boxed_oil.png";
 import "./Home.css";
 
-// Array of products for demonstration
 const products = [
   {
     name: "Vanilla Butter Cream",
