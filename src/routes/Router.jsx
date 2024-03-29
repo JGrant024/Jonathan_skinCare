@@ -7,10 +7,11 @@ import Layout from "../pages/Layout";
 import Refund from "../pages/Refund";
 import CartPage from "../pages/CartPage";
 import Home from "../pages/Home";
-import ContactDeliveryForm from "../pages/ContactDeliveryForm 2";
+import ContactDeliveryForm from "../components/ContactDeliveryForm 2";
 import PaymentForm from "../pages/PaymentForm";
 import OrderPage from "../pages/OrderPage";
 import UserProfilePage from "../pages/UserProfilePage";
+import About from "../pages/About";
 
 const router = createBrowserRouter([
   {
@@ -18,7 +19,7 @@ const router = createBrowserRouter([
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
-      { path: "/home", element: <Home /> },
+      { path: "/", element: <Home /> },
       { path: "products", element: <Products /> },
       { path: "login", element: <Login />, action: loginAction },
       { path: "signup", element: <Signup />, action: SignupAction },
@@ -28,6 +29,7 @@ const router = createBrowserRouter([
       { path: "payment", element: <PaymentForm /> },
       { path: "orders", element: <OrderPage /> },
       { path: "profile", element: <UserProfilePage /> },
+      { path: "about", element: <About /> },
     ],
   },
 ]);

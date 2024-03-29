@@ -1,50 +1,93 @@
 import { useShop } from "./Shop-context";
 import ESSENTIAL_PRODUCTS from "../essential_products";
+import { PayPalButtons } from "@paypal/react-paypal-js";
 
 const CartPage = () => {
   const { cartItems, addToCart, removeFromCart } = useShop();
-  console.log("CART ITEMS", cartItems);
+
   const calculateTotal = () => {
-    // return Object.keys(cartItems)
-    //   .reduce((total, itemId) => {
-    //     // Assuming you have a method to get item details by ID
-    //     const item = ESSENTIAL_PRODUCTS.find(
-    //       (product) => product.id.toString() === itemId
-    //     );
-    //     return total + item.price + cartItems[itemId];
-    //   }, 0)
-    //   .toFixed(2);
-    return;
+    return Object.keys(cartItems)
+      .reduce((total, itemId) => {
+        const item = ESSENTIAL_PRODUCTS.find(
+          (product) => product.id.toString() === itemId
+        );
+        return total + parseFloat(item.price) * cartItems[itemId];
+      }, 0)
+      .toFixed(2);
   };
 
+  const total = calculateTotal();
+
   return (
-    <div className="cart-page">
-      <h1>Your Cart</h1>
+    <div className="bg-gray-100 min-h-screen p-8">
+      <h1 className="text-3xl font-bold text-gray-800 mb-6">Your Cart</h1>
       {Object.keys(cartItems).length === 0 ? (
-        <p>Your cart is empty</p>
+        <div className="text-center text-xl text-gray-600">
+          Your cart is empty
+        </div>
       ) : (
-        <div>
-          {Object.keys(cartItems).map(
-            (itemId) =>
+        <div className="space-y-4">
+          {Object.keys(cartItems).map((itemId) => {
+            const item = ESSENTIAL_PRODUCTS.find(
+              (product) => product.id.toString() === itemId
+            );
+            return (
+              item &&
               cartItems[itemId] > 0 && (
-                <div key={itemId} className="cart-item">
-                  <div>
-                    {
-                      ESSENTIAL_PRODUCTS.find(
-                        (product) => product.id.toString() === itemId
-                      ).productName
-                    }
+                <div
+                  key={itemId}
+                  className="flex items-center bg-white p-4 rounded-lg shadow-md"
+                >
+                  <img
+                    src={item.productImage}
+                    alt={item.productName}
+                    className="w-20 h-20 object-cover mr-4"
+                  />
+                  <div className="flex-grow">
+                    <div className="font-semibold">{item.productName}</div>
+                    <div>Quantity: {cartItems[itemId]}</div>
+                    <div>Price: ${item.price}</div>
                   </div>
-                  <div>Quantity: {cartItems[itemId]}</div>
-                  <button onClick={() => addToCart(itemId)}>+</button>
-                  <button onClick={() => removeFromCart(itemId)}>-</button>
-                  <button onClick={() => removeFromCart(itemId, true)}>
-                    Remove
-                  </button>
+                  <div className="flex flex-col space-y-2 ml-4">
+                    <button
+                      onClick={() => addToCart(itemId)}
+                      className="px-2 py-1 bg-blue-500 text-white rounded hover:bg-blue-600"
+                    >
+                      +
+                    </button>
+                    <button
+                      onClick={() => removeFromCart(itemId)}
+                      className="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600"
+                    >
+                      -
+                    </button>
+                    <button
+                      onClick={() => removeFromCart(itemId, true)}
+                      className="px-2 py-1 bg-gray-500 text-white rounded hover:bg-gray-600"
+                    >
+                      Remove
+                    </button>
+                  </div>
                 </div>
               )
-          )}
-          <div className="total">Total: ${calculateTotal()}</div>
+            );
+          })}
+          <div className="text-xl font-bold mt-6">Total: ${total}</div>
+
+          <div className="mt-4">
+            <PayPalButtons
+              style={{ layout: "vertical" }}
+              createOrder={(data, actions) => {
+                return actions.order.create({
+                  purchase_units: [
+                    {
+                      amount: { value: total },
+                    },
+                  ],
+                });
+              }}
+            />
+          </div>
         </div>
       )}
     </div>

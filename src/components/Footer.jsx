@@ -3,52 +3,34 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer style={footerStyle}>
-      <p>
-        {" "}
-        ©2024 Essentiald Skin Care. <p>All rights reserved.</p>
-      </p>
-
-      <div>
+    <footer className="bg-black text-white text-center p-4 fixed bottom-0 w-full">
+      <p className="mb-2">©2024 Essential'd Skin Care. All rights reserved.</p>
+      <div className="mb-2">
         Follow Us on Social Media!
         <a
           href="https://www.facebook.com/essetialdskin"
           target="_blank"
           rel="noopener noreferrer"
+          className="inline-block mx-2"
         >
-          <FaFacebook style={{ fontSize: "25px " }} />
-
-          <a
-            href="https://www.instagram.com/essentialdskin/?hl=en"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <FaInstagram style={{ fontSize: "25px " }} />
-          </a>
-          <br />
+          <FaFacebook className="text-2xl" />
         </a>
-        <li style={{ listStyle: "none" }}>
-          <Link to="/refund">Refund Policy</Link>
-        </li>
+        <a
+          href="https://www.instagram.com/essentialdskin/?hl=en"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-block mx-2"
+        >
+          <FaInstagram className="text-2xl" />
+        </a>
       </div>
+      <li className="list-none">
+        <Link to="/refund" className="text-white hover:text-gray-300">
+          Refund Policy
+        </Link>
+      </li>
     </footer>
   );
-};
-
-const footerStyle = {
-  background: "black",
-  color: "#d7812587",
-  textAlign: "center",
-  position: "fixed",
-  bottom: "0",
-  width: "100%",
-  height: "165px",
-};
-
-const linkStyle = {
-  color: "white",
-  textDecoration: "none",
-  margin: "0 10px",
 };
 
 export default Footer;

@@ -3,32 +3,47 @@ import { ShoppingCart } from "phosphor-react";
 
 const Navbar = () => {
   return (
-    <aside className="asideNav">
+    <aside className="bg-gray-800 text-white p-4">
       <nav>
-        <ul
-          className="asideLinks"
-          style={{
-            listStyle: "none",
-            margin: "0",
-            padding: "0",
-            display: "flex",
-            gap: "20px",
-            width: "min-content",
-            color: "tan",
-          }}
-        >
+        <ul className="flex gap-6 justify-center items-center">
           <li>
-            <Link to="/home">Home</Link>
+            <Link
+              to="/"
+              className="hover:text-gray-300 transition-colors duration-200"
+            >
+              Home
+            </Link>
           </li>
           <li>
-            <Link to="/login">Login</Link>
+            <Link
+              to="/about"
+              className="hover:text-gray-300 transition-colors duration-200"
+            >
+              About
+            </Link>
           </li>
           <li>
-            <Link to="/Products">Shop</Link>
+            <Link
+              to="/login"
+              className="hover:text-gray-300 transition-colors duration-200"
+            >
+              Login
+            </Link>
           </li>
           <li>
-            <Link to="/cart">
-              <ShoppingCart size={44} />
+            <Link
+              to="/products"
+              className="hover:text-gray-300 transition-colors duration-200"
+            >
+              Shop
+            </Link>
+          </li>
+          <li>
+            <Link
+              to="/cart"
+              className="hover:text-gray-300 transition-colors duration-200 flex items-center"
+            >
+              <ShoppingCart size={24} weight="fill" />
             </Link>
           </li>
         </ul>

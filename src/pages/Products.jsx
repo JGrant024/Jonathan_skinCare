@@ -2,85 +2,46 @@ import ESSENTIAL_PRODUCTS from "../essential_products";
 import "./Products.css";
 import "../pages/Products.css";
 import { useShop } from "./Shop-context";
-import { PayPalButtons } from "@paypal/react-paypal-js"; // Import PayPalButtons
+
 
 function Products() {
   const { cartItems, addToCart, removeFromCart } = useShop();
 
-  // Define a simple purchase handler (adjust as needed)
-  const handlePurchase = (productId, price) => {
-    // Here you can implement further logic to handle the purchase,
-    // e.g., updating the cart or calling your backend.
-    alert(`Purchased product ${productId} for $${price}`);
-  };
-
   return (
-    <div>
-      <h1>Shop From Our Natural Products</h1>
-      <p>
-        Thank you for stopping by our site. We hope that you enjoy our products
-        as they are handmade with 100% natural ingredients.
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <h1 className="text-2xl font-bold text-center text-gray-900 mt-6">Shop From Our Natural Products</h1>
+      <p className="text-center text-gray-600 mt-2">
+        Thank you for stopping by our site. We hope that you enjoy our products as they are handmade with 100% natural ingredients.
       </p>
-      <strong>
-        <p>Shop Our Satin Collection!</p>
-      </strong>
-      <div
-        style={{
-          display: "flex",
-          flexWrap: "wrap",
-          justifyContent: "space-around",
-        }}
-      >
+      <p className="font-semibold text-center mt-4">Shop Our Satin Collection!</p>
+      <div className="flex flex-wrap justify-center gap-6 mt-8">
         {ESSENTIAL_PRODUCTS.map((product) => {
           const cartItemsAmount = cartItems[product.id] || 0;
           return (
-            <div className="flip-card" key={product.id}>
-              <div className="flip-card-inner">
-                <div
-                  className="flip-card-front"
-                  style={{ textAlign: "center" }}
-                >
-                  <img
-                    src={product.productImage}
-                    alt={product.productName}
-                    style={{ width: "100%", height: "auto" }}
-                  />
-                  <h3>{product.productName}</h3>
-                  <p>${product.price}</p>
-                </div>
-                <div className="flip-card-back">
-                  <h3>{product.productName}</h3>
-                  <p>{product.description}</p>
-                  <button onClick={() => addToCart(product.id)}>
+            <div className="w-64 bg-white shadow-lg rounded-lg overflow-hidden" key={product.id}>
+              <img
+                className="w-full h-48 object-cover object-center"
+                src={product.productImage}
+                alt={product.productName}
+              />
+              <div className="p-4">
+                <h3 className="text-lg font-semibold">{product.productName}</h3>
+                <p className="text-gray-600">${product.price}</p>
+                <p className="mt-2 text-gray-500">{product.description}</p>
+                <div className="flex justify-between items-center mt-4">
+                  <button
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+                    onClick={() => addToCart(product.id)}
+                  >
                     Add to Cart {cartItemsAmount > 0 && `(${cartItemsAmount})`}
                   </button>
                   {cartItemsAmount > 0 && (
-                    <>
-                      <button
-                        onClick={() => removeFromCart(product.id)}
-                        style={{ marginLeft: "10px" }}
-                      >
-                        Remove from Cart
-                      </button>
-                      {/* PayPal Checkout Button for each product */}
-                      <PayPalButtons
-                        style={{ layout: "horizontal" }}
-                        createOrder={(data, actions) => {
-                          return actions.order.create({
-                            purchase_units: [
-                              {
-                                amount: { value: product.price.toString() },
-                              },
-                            ],
-                          });
-                        }}
-                        onApprove={(data, actions) => {
-                          return actions.order.capture().then((details) => {
-                            handlePurchase(product.id, product.price);
-                          });
-                        }}
-                      />
-                    </>
+                    <button
+                      className="text-red-600 hover:text-red-800"
+                      onClick={() => removeFromCart(product.id)}
+                    >
+                      Remove
+                    </button>
                   )}
                 </div>
               </div>
