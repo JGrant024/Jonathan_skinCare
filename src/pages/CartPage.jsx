@@ -20,7 +20,6 @@ const CartPage = () => {
 
   return (
     <div className="bg-gray-100 min-h-screen p-8">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">Your Cart</h1>
       {Object.keys(cartItems).length === 0 ? (
         <div className="text-center text-xl text-gray-600">
           Your cart is empty

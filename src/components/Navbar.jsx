@@ -3,7 +3,7 @@ import { ShoppingCart } from "phosphor-react";
 
 const Navbar = () => {
   return (
-    <aside className="bg-gray-800 text-white p-4">
+    <aside className=" bg-yellow-100 text-bg-amber-900 p-4">
       <nav>
         <ul className="flex gap-6 justify-center items-center">
           <li>

@@ -5,7 +5,7 @@ export async function action({ request }) {
   const formData = await request.formData();
   const email = formData.get("email");
   const password = formData.get("password");
-  const fullName = formData.get("full_name"); // Ensure the name attribute in the form is "full_name"
+  const fullName = formData.get("full_name");
 
   const { data, error } = await supabase.auth.signUp({
     email: email,
@@ -24,7 +24,6 @@ const Signup = () => {
   const navigate = useNavigate();
   const response = useActionData();
 
-  // Navigate after signup if the response is successful
   if (response) {
     navigate("/profile");
   }
@@ -84,7 +83,7 @@ const Signup = () => {
           </div>
           <button
             type="submit"
-            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+            className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-yellow-400 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
           >
             Sign Up
           </button>

@@ -63,13 +63,13 @@ const Login = () => {
           </div>
           <button
             type="submit"
-            className="w-full bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600"
+            className="w-full bg-yellow-400 text-white p-2 rounded-md hover:bg-yellow-00"
           >
             Login
           </button>
           <div className="text-sm mt-4 text-center">
             Don't have an account?{" "}
-            <Link to="/signup" className="text-blue-500 hover:text-blue-600">
+            <Link to="/signup" className="text-amber-900 hover:text-blue-600">
               Sign Up
             </Link>
           </div>

@@ -2,7 +2,7 @@ import ESSENTIAL_PRODUCTS from "../essential_products";
 import "./Products.css";
 import "../pages/Products.css";
 import { useShop } from "./Shop-context";
-
+import { PayPalButtons } from "@paypal/react-paypal-js"; // Import PayPalButtons
 
 function Products() {
   const { cartItems, addToCart, removeFromCart } = useShop();
