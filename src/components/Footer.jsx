@@ -27,6 +27,8 @@ const Footer = () => {
       <Link to="/refund" className="hover:underline list-none">
         Refund Policy
       </Link>
+      <br />
+      <br />
     </footer>
   );
 };

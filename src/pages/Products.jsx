@@ -2,13 +2,19 @@ import ESSENTIAL_PRODUCTS from "../essential_products";
 import "./Products.css";
 import "../pages/Products.css";
 import { useShop } from "./Shop-context";
-import { PayPalButtons } from "@paypal/react-paypal-js"; // Import PayPalButtons
+import { PayPalButtons } from "@paypal/react-paypal-js";
+import { useNavigate } from "react-router-dom";
 
 function Products() {
   const { cartItems, addToCart, removeFromCart } = useShop();
+  const navigate = useNavigate();
+
+  const handleCheckout = () => {
+    navigate("/cart");
+  };
 
   return (
-    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-32">
       <h1 className="text-2xl font-bold text-center text-gray-900 mt-6">
         Shop From Our Natural Products
       </h1>
@@ -56,6 +62,14 @@ function Products() {
             </div>
           );
         })}
+      </div>
+      <div className="flex justify-center mt-8">
+        <button
+          className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
+          onClick={handleCheckout}
+        >
+          Checkout
+        </button>
       </div>
     </div>
   );
