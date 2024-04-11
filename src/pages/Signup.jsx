@@ -1,3 +1,4 @@
+import React, { useState, useEffect } from "react";
 import { Form, useNavigate, useActionData, Link } from "react-router-dom";
 import supabase from "../SupabaseClient";
 
@@ -23,10 +24,16 @@ export async function action({ request }) {
 const Signup = () => {
   const navigate = useNavigate();
   const response = useActionData();
+  const [alertVisible, setAlertVisible] = useState(false);
 
-  if (response) {
-    navigate("/profile");
-  }
+  useEffect(() => {
+    if (response) {
+      setAlertVisible(true);
+      setTimeout(() => {
+        navigate("/profile");
+      }, 3000); // Navigate after 3 seconds
+    }
+  }, [response, navigate]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -35,6 +42,11 @@ const Signup = () => {
           Sign Up!
         </h2>
         <Form method="POST" className="mt-8 space-y-6">
+          {alertVisible && (
+            <div className="mb-4 text-sm text-green-600">
+              Please check your email to verify account and login.
+            </div>
+          )}
           <div>
             <label
               htmlFor="full_name"
