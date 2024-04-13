@@ -1,3 +1,5 @@
+import About_Essential from "../assets/Images/About_Essential.mp4";
+
 const About = () => {
   return (
     <div className="min-h-screen bg-gray-800 flex flex-col items-center justify-center text-white p-4">
@@ -10,6 +12,11 @@ const About = () => {
           natural skin products that heal and soothe the body. We are a vegan
           and paraben-free company.
         </p>
+      </div>
+      <div className="video-wrapper mt-8">
+        <video width="640" height="360" controls>
+          <source src={About_Essential} />
+        </video>
       </div>
     </div>
   );
