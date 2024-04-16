@@ -10,7 +10,7 @@ const About = () => {
         <p className="mt-4">
           Essentiald Skincare was established in 2020. Our Mission is to create
           natural skin products that heal and soothe the body. We are a vegan
-          and paraben-free company.
+          and paraben-free company. Shop some of our products! 
         </p>
       </div>
       <div className="video-wrapper mt-8">
